@@ -1,4 +1,3 @@
-// pages/Appointments/Appointments.jsx
 import { useEffect, useState } from "react";
 import {
   Box,
@@ -17,7 +16,7 @@ import {
   updateAppointment,
   deleteAppointment,
 } from "../../services/appointmentService";
-import EditAppointmentForm from "./EditAppointmentForm"; // Not used yet, but can be implemented later
+import EditAppointmentForm from "./EditAppointmentForm";
 import { TextField, MenuItem } from "@mui/material";
 
 export default function Appointments() {
@@ -94,7 +93,7 @@ export default function Appointments() {
     { id: "doctorName", label: "Doctor" },
     { id: "date", label: "Date" },
     { id: "time", label: "Time" },
-    { id: "status", label: "Status" }, // ✅ new column
+    { id: "status", label: "Status" },
   ];
 
   const filteredAppointments = (

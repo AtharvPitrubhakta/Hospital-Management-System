@@ -1,4 +1,3 @@
-// components/UI/TableWithActions.jsx
 import {
   Table,
   TableHead,
@@ -24,7 +23,6 @@ export default function TableWithActions({
   onEdit,
   onDelete,
 }) {
-  
   const role = useRole();
 
   return (
@@ -48,12 +46,10 @@ export default function TableWithActions({
                     <TableCell key={col.id}>{row[col.id]}</TableCell>
                   ))}
                   <TableCell>
-                    {/* <IconButton onClick={() => onEdit(row)} color="primary">✏️</IconButton> */}
                     <IconButton onClick={() => onEdit(row)} color="primary">
                       {" "}
                       <EditIcon />
                     </IconButton>
-                    {/* <IconButton onClick={() => onDelete(row._id)} color="error">🗑️</IconButton> */}
                     {role === "admin" && (
                       <IconButton
                         onClick={() => onDelete(row._id)}

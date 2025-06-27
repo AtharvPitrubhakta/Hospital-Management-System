@@ -1,4 +1,3 @@
-// pages/Appointments/AddAppointmentForm.jsx
 import {
   Dialog,
   DialogTitle,
@@ -6,7 +5,7 @@ import {
   TextField,
   Button,
   Box,
-  MenuItem
+  MenuItem,
 } from "@mui/material";
 import { useState } from "react";
 import PropTypes from "prop-types";
@@ -79,6 +78,8 @@ export default function AddAppointmentForm({ open, onClose, onSave }) {
     </Dialog>
   );
 }
+
+
 AddAppointmentForm.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,

@@ -1,24 +1,14 @@
-// pages/Patients/Patients.jsx
 import { useEffect, useState } from "react";
 import {
   Box,
   Button,
   Typography,
-  // Table,
-  // TableHead,
-  // TableRow,
-  // TableCell,
-  // TableBody,
   CircularProgress,
-  // TablePagination,
-  // IconButton,
   Dialog,
   DialogTitle,
   DialogActions,
 } from "@mui/material";
-// import DeleteIcon from "@mui/icons-material/Delete";
 import AddPatientForm from "./AddPatientForm";
-// import EditIcon from "@mui/icons-material/Edit";
 import EditPatientForm from "./EditPatientForm";
 import {
   getPatients,
@@ -29,13 +19,13 @@ import {
 import TableWithActions from "../../components/UI/TableWithActions";
 
 export default function Patients() {
-  const [patients, setPatients] = useState([]); // ✅ not null, not {}
+
+  const [patients, setPatients] = useState([]); 
   const [loading, setLoading] = useState(false);
   const [openForm, setOpenForm] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
   const [editPatient, setEditPatient] = useState(null);
   const [openEdit, setOpenEdit] = useState(false);
-
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -45,7 +35,7 @@ export default function Patients() {
     try {
       const res = await getPatients();
       console.log("API result:", res.data);
-      setPatients(Array.isArray(res.data) ? res.data : res.data.data); // defensive
+      setPatients(Array.isArray(res.data) ? res.data : res.data.data); 
     } catch (err) {
       console.error("Error fetching patients:", err);
     }

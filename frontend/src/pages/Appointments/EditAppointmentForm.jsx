@@ -1,4 +1,3 @@
-// pages/Appointments/EditAppointmentForm.jsx
 import {
   Dialog,
   DialogTitle,
@@ -22,7 +21,7 @@ export default function EditAppointmentForm({
     doctorName: "",
     date: "",
     time: "",
-    status: "pending", // Default status
+    status: "pending",
   });
 
   useEffect(() => {
@@ -87,6 +86,8 @@ export default function EditAppointmentForm({
     </Dialog>
   );
 }
+
+
 EditAppointmentForm.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,

@@ -4,7 +4,7 @@ const API = axios.create({
   baseURL: "http://localhost:5000/api",
 });
 
-// Add token automatically to each request
+// Using this You have to Add token automatically to each request
 API.interceptors.request.use((req) => {
   const token = localStorage.getItem("token");
   if (token) {
@@ -12,6 +12,5 @@ API.interceptors.request.use((req) => {
   }
   return req;
 });
-
 
 export default API;

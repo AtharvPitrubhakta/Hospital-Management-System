@@ -1,20 +1,6 @@
-// pages/Doctors/Doctors.jsx
 import { useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  Typography,
-  // Table,
-  // TableHead,
-  // TableRow,
-  // TableCell,
-  // TableBody,
-  CircularProgress,
-  // TablePagination,
-} from "@mui/material";
+import { Box, Button, Typography, CircularProgress } from "@mui/material";
 import AddDoctorForm from "./AddDoctorForm";
-// import DeleteIcon from "@mui/icons-material/Delete";
-// import IconButton from "@mui/material/IconButton";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -31,10 +17,10 @@ export default function Doctors() {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(false);
   const [openForm, setOpenForm] = useState(false);
-  const [page, setPage] = useState(0); // current page index
-  const [rowsPerPage, setRowsPerPage] = useState(5); // rows per page
-  const [deleteId, setDeleteId] = useState(null); // ID to delete
-  const [confirmOpen, setConfirmOpen] = useState(false); // dialog toggle
+  const [page, setPage] = useState(0); 
+  const [rowsPerPage, setRowsPerPage] = useState(5); 
+  const [deleteId, setDeleteId] = useState(null); 
+  const [confirmOpen, setConfirmOpen] = useState(false); 
   const [editDoctor, setEditDoctor] = useState(null);
   const [openEdit, setOpenEdit] = useState(false);
 
@@ -47,10 +33,10 @@ export default function Doctors() {
     } catch (err) {
       // console.error("Error fetching doctors:", err);
       console.error(
-        "❌ Error fetching doctors:",
+        "Error fetching doctors:",
         err.response?.data || err.message
       );
-      console.log("📛 Token used:", localStorage.getItem("token"));
+      console.log("Token used:", localStorage.getItem("token"));
     }
     setLoading(false);
   };
@@ -69,7 +55,7 @@ export default function Doctors() {
     try {
       await deleteDoctor(deleteId);
       setConfirmOpen(false);
-      fetchDoctors(); // refresh table
+      fetchDoctors(); 
     } catch (err) {
       console.error("Delete error:", err);
     }
@@ -88,7 +74,8 @@ export default function Doctors() {
   const handleUpdateDoctor = async (updatedData) => {
     try {
       await updateDoctor(updatedData._id, updatedData);
-      fetchDoctors(); // reload list
+      // reloading the list
+      fetchDoctors(); 
     } catch (err) {
       console.error("Error updating doctor:", err);
     }

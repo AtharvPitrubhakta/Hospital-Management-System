@@ -1,9 +1,8 @@
 const Doctor = require("../models/Doctor");
 
-// Get all doctors
 exports.getDoctors = async (req, res) => {
   try {
-    const doctors = await Doctor.find();
+    const doctors = await Doctor.findAll();
     res.status(200).json(doctors);
   } catch (err) {
     res
@@ -12,7 +11,6 @@ exports.getDoctors = async (req, res) => {
   }
 };
 
-// Add a new doctor
 exports.addDoctor = async (req, res) => {
   try {
     const { name, department, email } = req.body;
@@ -25,13 +23,14 @@ exports.addDoctor = async (req, res) => {
   }
 };
 
-// Update doctor
 exports.updateDoctor = async (req, res) => {
   try {
     const { id } = req.params;
-    const updated = await Doctor.findByIdAndUpdate(id, req.body, { new: true });
-    if (!updated) return res.status(404).json({ message: "Doctor not found" });
-    res.status(200).json(updated);
+    const doctor = await Doctor.findByPk(id);
+    if (!doctor) return res.status(404).json({ message: "Doctor not found" });
+
+    await doctor.update(req.body);
+    res.status(200).json(doctor);
   } catch (err) {
     res
       .status(500)
@@ -39,12 +38,13 @@ exports.updateDoctor = async (req, res) => {
   }
 };
 
-// Delete doctor
 exports.deleteDoctor = async (req, res) => {
   try {
     const { id } = req.params;
-    const deleted = await Doctor.findByIdAndDelete(id);
-    if (!deleted) return res.status(404).json({ message: "Doctor not found" });
+    const doctor = await Doctor.findByPk(id);
+    if (!doctor) return res.status(404).json({ message: "Doctor not found" });
+
+    await doctor.destroy();
     res.status(200).json({ message: "Doctor deleted successfully" });
   } catch (err) {
     res

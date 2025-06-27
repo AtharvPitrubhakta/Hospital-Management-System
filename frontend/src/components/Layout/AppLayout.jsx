@@ -1,12 +1,11 @@
-// components/Layout/AppLayout.jsx
-import { Box } from '@mui/material';
-import Sidebar from './Sidebar';
-import NavBar from './NavBar';
-import PropTypes from 'prop-types';
+import { Box } from "@mui/material";
+import Sidebar from "./Sidebar";
+import NavBar from "./NavBar";
+import PropTypes from "prop-types";
 
 const AppLayout = ({ children }) => {
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <Sidebar />
       <Box sx={{ flexGrow: 1 }}>
         <NavBar />
@@ -16,8 +15,6 @@ const AppLayout = ({ children }) => {
   );
 };
 
-
-// ✅ Add PropTypes validation
 AppLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };

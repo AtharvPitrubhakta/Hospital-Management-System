@@ -1,9 +1,8 @@
 const Patient = require("../models/Patient");
 
-// GET all patients
 exports.getPatients = async (req, res) => {
   try {
-    const patients = await Patient.find();
+    const patients = await Patient.findAll();
     res.status(200).json(patients);
   } catch (err) {
     res
@@ -12,7 +11,6 @@ exports.getPatients = async (req, res) => {
   }
 };
 
-// POST add patient
 exports.addPatient = async (req, res) => {
   try {
     const { name, age, address } = req.body;
@@ -25,15 +23,14 @@ exports.addPatient = async (req, res) => {
   }
 };
 
-// PUT update patient
 exports.updatePatient = async (req, res) => {
   try {
     const { id } = req.params;
-    const updated = await Patient.findByIdAndUpdate(id, req.body, {
-      new: true,
-    });
-    if (!updated) return res.status(404).json({ message: "Patient not found" });
-    res.status(200).json(updated);
+    const patient = await Patient.findByPk(id);
+    if (!patient) return res.status(404).json({ message: "Patient not found" });
+
+    await patient.update(req.body);
+    res.status(200).json(patient);
   } catch (err) {
     res
       .status(500)
@@ -41,12 +38,13 @@ exports.updatePatient = async (req, res) => {
   }
 };
 
-// DELETE patient
 exports.deletePatient = async (req, res) => {
   try {
     const { id } = req.params;
-    const deleted = await Patient.findByIdAndDelete(id);
-    if (!deleted) return res.status(404).json({ message: "Patient not found" });
+    const patient = await Patient.findByPk(id);
+    if (!patient) return res.status(404).json({ message: "Patient not found" });
+
+    await patient.destroy();
     res.status(200).json({ message: "Patient deleted successfully" });
   } catch (err) {
     res

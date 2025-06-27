@@ -1,9 +1,20 @@
-const mongoose = require("mongoose");
+const { DataTypes } = require("sequelize");
+const { sequelize } = require("../config/mysqlConnect");
 
-const doctorSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  department: { type: String, required: true },
-  email: { type: String, required: true },
+const Doctor = sequelize.define("Doctor", {
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  department: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  email: {
+    type: DataTypes.STRING,
+    unique: true,
+    allowNull: false,
+  },
 });
 
-module.exports = mongoose.model("Doctor", doctorSchema);
+module.exports = Doctor;

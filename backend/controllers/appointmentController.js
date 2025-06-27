@@ -1,6 +1,6 @@
 const Appointment = require("../models/Appointment");
 
-// GET all appointments
+// GET All appointments
 exports.getAppointments = async (req, res) => {
   try {
     const appointments = await Appointment.find();

@@ -12,9 +12,19 @@ const { authorizeRoles } = require("../middleware/roleMiddleware");
 
 router.get("/", authMiddleware, getPatients);
 
-router.post("/", authMiddleware, authorizeRoles("receptionist", "admin"), addPatient);
+router.post(
+  "/",
+  authMiddleware,
+  authorizeRoles("receptionist", "admin"),
+  addPatient
+);
 
-router.put("/:id", authMiddleware, authorizeRoles("receptionist", "admin"), updatePatient);
+router.put(
+  "/:id",
+  authMiddleware,
+  authorizeRoles("receptionist", "admin"),
+  updatePatient
+);
 
 router.delete("/:id", authMiddleware, authorizeRoles("admin"), deletePatient);
 
