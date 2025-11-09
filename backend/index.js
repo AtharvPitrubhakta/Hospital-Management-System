@@ -13,8 +13,8 @@ const mongodb = require("./config/mongoConnect");
 mongodb.connect();
 
 // connect to MySQL
-const { connectMySQL } = require("./config/mysqlConnect");
-connectMySQL();
+const { connectPostgreSQL } = require("./config/mysqlConnect");
+connectPostgreSQL();
 
 // routes
 app.use("/api/auth", require("./routes/authRoutes"));
